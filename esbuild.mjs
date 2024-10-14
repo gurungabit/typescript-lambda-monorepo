@@ -7,6 +7,9 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const lambdasDir = join(__dirname, 'lambdas');
 const lambdaFunctions = readdirSync(lambdasDir);
 
+// List of modules to be excluded from bundling
+const externalModules = ['aws-sdk', 'ibm_db', /* add other modules you want to exclude */];
+
 async function build() {
   for (const func of lambdaFunctions) {
     const entryPoint = join(lambdasDir, func, 'src', 'index.ts');
@@ -20,6 +23,7 @@ async function build() {
         platform: 'node',
         target: 'es2020',
         format: 'esm',
+        external: externalModules,
       });
 
       console.log(`Built ${func}`);
