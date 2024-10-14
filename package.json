@@ -1,0 +1,32 @@
+{
+  "name": "ts-lambda-monorepo",
+  "version": "1.0.0",
+  "description": "TypeScript Lambda API monorepo with multiple functions",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "lambdas/*"
+  ],
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "zip": "npm run zip --workspaces",
+    "deploy": "npm run deploy --workspaces",
+    "lint": "eslint .",
+    "format": "prettier --write \"lambdas/**/src/**/*.ts\" \"lambdas/**/src/tests/**/*.ts\"",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.145",
+    "@types/node": "22.7.5",
+    "@vitest/coverage-v8": "^2.1.2",
+    "esbuild": "0.24.0",
+    "eslint": "^8.0.0",
+    "prettier": "3.3.3",
+    "typescript": "5.6.3",
+    "vitest": "^2.1.2"
+  }
+}
